@@ -1,0 +1,23 @@
+<% include partials/header %>
+<style>
+    .content * {
+        text-align: center;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    form * {
+        display: block;
+        margin-bottom: 2vh;
+    }
+    input[type="submit"]{
+        font-size: 3vh;
+        margin-top: 5vh;
+    }
+</style>
+<h1>Login!</h1>
+<form action="/login" method="post">
+    <input class="titleUpd"type="text" name="username" placeholder="Username" autocomplete="off">
+    <input class="titleUpd" type="password" name="password" placeholder="Password" autocomplete="off">
+    <input type="submit" value="Login!" class="submit">
+</form>
+<% include partials/footer %>

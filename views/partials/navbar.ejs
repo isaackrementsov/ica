@@ -1,0 +1,12 @@
+<ul class="navbar">
+    <li><a href="/"><h1 class="navlink">Ilya Chistiakov Architect</h1></a></li>
+    <%if(session.userId){%>
+        <li><form action="/logout" method="post" class="link"><input type="submit" value="Logout" class="navlink"></form></li>
+        <li><a href="/admin" class="navlink">Dashboard</a></li>
+    <%}else{%>
+        <li><a href="/contact" class="navlink">Contact</a></li>
+    <%}%>
+    <li><a href="/info/about" class="navlink">About</a></li>
+    <li><a href="/info/resume" class="navlink">Resume</a></li>
+    <li><a href="/blog" class="navlink">Blog</a></li>
+</ul>

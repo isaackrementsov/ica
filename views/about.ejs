@@ -1,0 +1,32 @@
+<% include partials/otherheader %>
+<%if(page == "about" || page == "resume"){%>
+    <h1>Ilya Chistiakov</h1>
+    <h2><%=helpers.title(page)%></h2>
+    <%if(session.userId){%>
+        <form action="/admin/about<%=page%>" method="post">
+            <input type="text" name="title">
+            <input type="text" name="content">
+            <input type="submit" value="Create">
+        </form>
+    <%}%>
+    <% if(docs.length){%>
+        <%for(var i = 0; i < docs.length; i++){%>
+            <h3><%= docs[i].title %></h3>
+            <p><%- docs[i].content %></p>
+            <%if(session.userId){%>
+                <form action="/adminn/updateAbout<%=docs[i]._id%>/<%=page%>" method="post">
+                    <input type="text" name="value">
+                    <input type="submit" value="Change">
+                </form>
+                <form action="/admin/deleteAbout<%=docs[i]._id%>/<%=page%>" method="post">
+                    <input type="submit" value="Delete">
+                </form>
+            <%}%>
+        <%}%>
+    <%}else{%>
+        <p>Information not found!<%= session.userId ? " Add some above!": "" %></p>
+    <%}%>
+<%}else{%>
+    <p>Page not found.</p>
+<%}%>
+<% include partials/footer %>

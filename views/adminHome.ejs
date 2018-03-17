@@ -1,0 +1,13 @@
+<% include partials/otherheader %>
+<style>
+    .content * {
+        text-align: center;
+    }
+</style>
+<h1>Your Dashboard</h1>
+<div class="inline">
+    <p>Buildings posted: <%=docs.filter(function(key){return key.blog = "no"}).length%> <a href="/admin/create" class="submit">Add</a></p>
+    <p style="color:transparent"> || </p>
+    <p>Blog posts: <%=docs.filter(function(key){return key.blog != "no"}).length%> <a class="submit" href="/blog">Add</a></p>
+</div>
+<% include partials/footer %>

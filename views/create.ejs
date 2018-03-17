@@ -1,0 +1,40 @@
+<% include partials/otherheader %>
+<style>
+    .content * {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-bottom: 1vh;
+    }
+    .content style {
+        display: none;
+    }
+    .inline * {
+        display: inline-block;
+    }
+</style>
+<h1>Add an Architectural Project</h1>
+<form action="/admin/createno" method="post" enctype="multipart/form-data">
+    <div class="inline">
+        <input type="text" name="name" placeholder="Title" class="titleUpd" autocomplete="off">
+        <input type="text" name="postname" placeholder="Postname" class="titleUpd" autocomplete="off">
+    </div>
+    <div class="inline">
+        <input type="text" name="year" placeholder="Year" class="titleUpd" autocomplete="off">
+        <input type="text" name="location" placeholder="Location" class="titleUpd" autocomplete="off">
+    </div>
+    <div class="inline">
+        <label for="file1">
+            <input type="file" name="coverPhoto" id="file1" style="display:none;">
+            <a class="submit">Choose Cover Photo</a>
+        </label>
+        <label for="file2">
+            <input type="file" name="gallery" multiple style="display:none;" id="file2">
+            <a class="submit">Add Gallery</a>
+        </label>
+    </div>
+    <textarea name="description" placeholder="Description" class="textarea"></textarea>
+    <input type="submit" class="submit" value="Create!">
+</form>
+<% include partials/footer %>
