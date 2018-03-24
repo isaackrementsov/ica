@@ -13,12 +13,14 @@ module.exports = {
         }
     },
     create: function(req,res){
+        var blog = req.body.blog == "blog";
+        console.log(blog)
         var image;
         if(req.files['coverPhoto']){
-            var image = req.files['coverPhoto'][0].filename
+            image = req.files['coverPhoto'][0].filename
         }else{
-            var image = null
-        };
+            image = null
+        }
         var images = [];
         if(req.files['gallery']){
             for(var i = 0; i < req.files['gallery'].length; i++){
@@ -26,14 +28,14 @@ module.exports = {
             }
         }else{
             var images = null
-        };
-        Post.create({name:req.body.name, postname:req.body.postname.split(" ")[0], content:req.body.description, image:image, images:images, blog:req.params.blog, location:req.body.location, year:req.body.year}, function(err){
+        }
+        Post.create({name:req.body.name, postname:req.body.postname.split(" ")[0], content:req.body.description, image:image, images:images, blog:blog, location:req.body.location, year:req.body.year}, function(err){
             if(err){
                 req.session.err = "Please use a unique postname";
                 res.redirect("/admin/create")
             }else{
                 req.session.err = false
-            };
+            }
             res.redirect("/admin")
         })
     },
@@ -56,14 +58,18 @@ module.exports = {
                         doc.image = req.files['coverPhoto'][0].filename;
                         doc.save();
                         res.redirect("/posts/" + req.params.postname)
-                    }else if(req.files['gallery']){
+                    } 
+                    if(req.files['gallery']){
+                        if(!doc.images){
+                            doc.images = []
+                        }
                         for(var i = 0; i < req.files['gallery'].length; i++){
                             doc.images.push({name:req.files['gallery'][i].filename})
-                        };
+                        }
                         doc.save();
                         res.redirect("/posts/" + req.params.postname)
                     }
-                }else if(attr.indexOf("delete") !== -1){
+                }else if(attr.indexOf("delete") != -1){
                     doc.images = doc.images.filter(function(index){
                         return index.name != attr.split("+")[1];
                     });
@@ -92,7 +98,7 @@ module.exports = {
                         doc.save();
                         res.redirect("/posts/" + req.params.postname)
                     }
-                };
+                }
             }
         })
     },
@@ -111,7 +117,7 @@ module.exports = {
                 console.log(doc.content);
                 doc.content = req.body.value;
                 doc.save()
-            };
+            }
             res.redirect("/info/" + req.params.page)
         })        
     },

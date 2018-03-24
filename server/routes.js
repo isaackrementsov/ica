@@ -13,18 +13,32 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 var multiUpload = upload.fields([{name:"coverPhoto", maxCount: 1}, {name:"gallery"}]);
+var checkFiles = function(req,res,next){
+  if(req.files['coverPhoto']){
+    next()
+  }else{
+    res.redirect('/admin/create')
+  }
+}
+var checkFile = function(req,res,next){
+  if(req.file){
+    next()
+  }else{
+    res.redirect('/services/create')
+  }
+}
 module.exports = function(app){
-    console.log("Router has been reached");
     var router = express.Router();
     app.use("/", router);
     router.get("/", main.home);
+    router.get("/blog", main.blog);
     router.get("/login", main.renderLogin);
     router.post("/login", main.login);
     router.get("/posts/:postname", main.show);
     router.get("/info/:page", main.about);
     router.get("/admin", admin.home);
     router.get("/admin/create", admin.renderCreate);
-    router.post("/admin/create:blog", multiUpload, admin.create);
+    router.post("/admin/create", multiUpload, checkFiles, admin.create);
     router.post("/admin/update:postname/:attr", multiUpload, admin.update);
     router.post("/admin/deletePost/:postname", admin.delete);
     router.post("/admin/about:page", admin.about);

@@ -10,15 +10,16 @@
     .content style {
         display: none;
     }
-    .inline * {
-        display: inline-block;
-    }
 </style>
-<h1>Add an Architectural Project</h1>
-<form action="/admin/createno" method="post" enctype="multipart/form-data">
+<h1>Add a post</h1>
+<form action="/admin/create" method="post" enctype="multipart/form-data">
+    <select class="submit" name="blog">
+        <option value="project">Project</option>
+        <option value="blog">Blog</option>
+    </select>
     <div class="inline">
-        <input type="text" name="name" placeholder="Title" class="titleUpd" autocomplete="off">
-        <input type="text" name="postname" placeholder="Postname" class="titleUpd" autocomplete="off">
+        <input type="text" name="name" placeholder="Title" class="titleUpd" required autocomplete="off">
+        <input type="text" name="postname" placeholder="Unique Postname" required class="titleUpd" autocomplete="off">
     </div>
     <div class="inline">
         <input type="text" name="year" placeholder="Year" class="titleUpd" autocomplete="off">
@@ -26,11 +27,11 @@
     </div>
     <div class="inline">
         <label for="file1">
-            <input type="file" name="coverPhoto" id="file1" style="display:none;">
+            <input type="file" name="coverPhoto" id="file1" style="display:none !important;">
             <a class="submit">Choose Cover Photo</a>
         </label>
         <label for="file2">
-            <input type="file" name="gallery" multiple style="display:none;" id="file2">
+            <input type="file" name="gallery" multiple style="display:none !important;" id="file2">
             <a class="submit">Add Gallery</a>
         </label>
     </div>

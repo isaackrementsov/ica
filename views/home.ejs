@@ -1,14 +1,14 @@
 <% include partials/header %>
-    <%for(var i = 0; i < docs.length; i++){%>
-        <div class="item">
-            <img src="/img/<%=docs[i].image%>">
-            <div class="layer">
-                <a href="/posts/<%=docs[i].postname%>" class="tiled">
-                    <p><%=docs[i].name%><p>
-                    <p><%=docs[i].year%><p>
-                    <p><%=docs[i].location%><p>
-                </a>
-            </div>
+<%for(var i = 0; i < docs.length; i++){%>
+    <div class="item">
+        <img src="/img/<%=docs[i].image%>">
+        <div class="layer">
+            <a href="/posts/<%=docs[i].postname%>" class="tiled">
+                <p><%=docs[i].name%><p>
+                <p><%=docs[i].year%><p>
+                <p><%=docs[i].location%><p>
+            </a>
         </div>
-    <%}%>
+    </div>
+<%}%>
 <% include partials/footer %>

@@ -1,13 +1,17 @@
 <% include partials/otherheader %>
-<style>
+<style style="display:none">
     .content * {
         text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
     }
 </style>
 <h1>Your Dashboard</h1>
 <div class="inline">
-    <p>Buildings posted: <%=docs.filter(function(key){return key.blog = "no"}).length%> <a href="/admin/create" class="submit">Add</a></p>
+    <p>Buildings posted: <%=docs.filter(function(doc){return doc.blog == false}).length%></p>
     <p style="color:transparent"> || </p>
-    <p>Blog posts: <%=docs.filter(function(key){return key.blog != "no"}).length%> <a class="submit" href="/blog">Add</a></p>
+    <p>Blog posts: <%=docs.filter(function(doc){return doc.blog == true}).length%></p>
 </div>
+<a href="/admin/create" class="submit">Add</a>
 <% include partials/footer %>

@@ -1,0 +1,19 @@
+<% include partials/header %>
+<style>
+    .content * {
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .content {
+        text-align: center;
+    }
+</style>
+<h1>Blog</h1>
+<%for(var i = 0; i < docs.length; i++){%>
+    <div class="box">
+        <a href="/posts/<%=docs[i].postname%>">
+            <h2><%=docs[i].name%></h2>
+        </a>
+    </div>
+<%}%>
+<% include partials/footer %>

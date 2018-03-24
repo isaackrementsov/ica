@@ -34,6 +34,10 @@ html, body {
     width: auto;
     height: 42vh;
 }
+.box {
+    width: 70vw;
+    background-color: whitesmoke;
+}
 .layer {
     top: 0;
     bottom: 0;
@@ -178,7 +182,7 @@ input.titleUpd{
     border-color: darkgrey;
 }
 .inline * {
-    display: inline-block;
+    display: inline-block !important;
 }
 h2 {
     font-size: 4vh;

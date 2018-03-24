@@ -9,7 +9,7 @@ var postSchema = new Schema({
     content: {type: String},
     image: {type: String},
     images: [{name: String}],
-    blog: {type: String},
+    blog: {type: Boolean},
     type: {type: String},
     year: {type: String},
     location: {type:String}

@@ -8,58 +8,66 @@
         text-align: center;
     }
 </style>
-<%if(session.userId){%>
-    <form action="/admin/deletePost/<%=doc.postname%>" method="post">
-        <input type="submit" class="submit" value="Delete Post">
-    </form>
-<%}%>
-<div class="slideshow-container">
-    <div class="slide">
-        <img src="/img/<%=doc.image%>">
-        <% if(session.userId){%>
-            <form action="/admin/update<%=doc.postname%>/<%=doc.image%>" method="post" enctype="multipart/form-data">    
-                <label for="file1">
-                    <input type="file" name="coverPhoto" id="file1" style="display:none;">
-                    <a class="submit">Choose File</a>
-                </label>
-                <input type="submit" value="Change cover photo" class="submit">
-            </form>
-        <%}%>
-    </div>
-    <%for(var i = 0; i < doc.images.length; i++){%>
-        <div class="slide">
-            <img src="/img/<%=doc.images[i].name%>">
-            <% if(session.userId){%>
-                <form action="/admin/update<%=doc.postname%>/delete+<%=doc.images[i].name%>" method="post">
-                    <input type="submit" value="Delete" class="submit">
-                </form>
+<%if(doc){%>
+    <%if(session.userId){%>
+        <form action="/admin/deletePost/<%=doc.postname%>" method="post">
+            <input type="submit" class="submit" value="Delete Post">
+        </form>
+    <%}%>
+    <%if(doc.image){%>
+        <div class="slideshow-container">
+            <div class="slide">
+                <img src="/img/<%=doc.image%>">
+                <% if(session.userId){%>
+                    <form action="/admin/update<%=doc.postname%>/<%=doc.image%>" method="post" enctype="multipart/form-data">    
+                        <label for="file1">
+                            <input type="file" name="coverPhoto" id="file1" style="display:none !important;">
+                            <a class="submit">Choose File</a>
+                        </label>
+                        <input type="submit" value="Change cover photo" class="submit">
+                    </form>
+                <%}%>
+            </div>
+            <%if(doc.images){%>
+                <%for(var i = 0; i < doc.images.length; i++){%>
+                    <div class="slide">
+                        <img src="/img/<%=doc.images[i].name%>">
+                        <% if(session.userId){%>
+                            <form action="/admin/update<%=doc.postname%>/delete+<%=doc.images[i].name%>" method="post">
+                                <input type="submit" value="Delete" class="submit">
+                            </form>
+                        <%}%>
+                    </div>
+                <%}%>
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
             <%}%>
         </div>
     <%}%>
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
-<% if(session.userId){%>
-    <form action="/admin/update<%=doc.postname%>/images" method="post" enctype="multipart/form-data">
-        <label for="file2">
-            <input type="file" name="gallery" multiple id="file2" style="display:none;">
-            <a class="submit">Add Files</a>
-        </label>
-        <input type="submit" value="Upload to gallery" class="submit">
-    </form>
-<%}%>
-<h1><%=doc.name%></h1>
-<% if(session.userId){%>
-    <form action="/admin/update<%=doc.postname%>/name" method="post">
-        <input type="text" placeholder="Change Name" name="value" class="titleUpd">
-    </form>
-<%}%>
-<div class="inline"><h2><%=doc.location%> || <%=doc.year%></h2><h2></h2></div>
-<p class="description"><%=doc.content%></p>
-<% if(session.userId){%>
-    <form action="/admin/update<%=doc.postname%>/content" method="post">
-        <textarea placeholder="Update description..." name="value" class="textarea"></textarea>
-        <input type="submit" class="submit" value="Submit">
-    </form>
+    <% if(session.userId){%>
+        <form action="/admin/update<%=doc.postname%>/images" method="post" enctype="multipart/form-data">
+            <label for="file2">
+                <input type="file" name="gallery" multiple id="file2" style="display:none !important;">
+                <a class="submit">Add Files</a>
+            </label>
+            <input type="submit" value="Upload to gallery" class="submit">
+        </form>
+    <%}%>
+    <h1><%=doc.name%></h1>
+    <% if(session.userId){%>
+        <form action="/admin/update<%=doc.postname%>/name" method="post">
+            <input type="text" placeholder="Change Name" name="value" class="titleUpd">
+        </form>
+    <%}%>
+    <%if(doc.year || doc.location){%>
+        <div class="inline"><h2><%=doc.location%> || <%=doc.year%></h2></div>
+    <%}%>
+    <p class="description"><%=doc.content%></p>
+    <% if(session.userId){%>
+        <form action="/admin/update<%=doc.postname%>/content" method="post">
+            <textarea placeholder="Update description..." name="value" class="textarea"></textarea>
+            <p><input type="submit" class="submit" value="Submit"></p>
+        </form>
+    <%}%>
 <%}%>
 <% include partials/footer %>

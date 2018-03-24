@@ -4,7 +4,7 @@ var About = require("../models/abouts");
 var helpers = require("../helpers");
 module.exports = {
     home: function(req,res){
-        Post.find({}, function(err,docs){
+        Post.find({blog:false}, function(err,docs){
             res.render("home", {session:req.session, docs:docs})
         })
     },
@@ -37,5 +37,10 @@ module.exports = {
         About.find({page:req.params.page}, function(err, docs){
             res.render("About", {session:req.session, docs:docs, page:req.params.page, helpers:helpers})
         });  
+    },
+    blog: function(req,res){
+        Post.find({blog:true}, function(err,docs){
+            res.render("blog", {session:req.session, docs:docs})
+        })
     }
 }

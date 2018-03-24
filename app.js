@@ -69,9 +69,7 @@ User.findOne({}, function(err,doc){
                 console.log(error)
             }
         })
-        console.log("User created!");
     }
 });
-console.log("App initiated correctly... Now for the routes...");
 //IMPORTANT; sends requests to app to routes module in server folder
 routes(app);
