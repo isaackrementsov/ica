@@ -1,38 +1,38 @@
-        <script>
-            function opendiv(value){
-                var div = document.getElementById(value);
-                if(div.style.display == "block"){
-                    div.style.display = "none"
-                }else{
-                    div.style.display = "block"
-                }
-            };
-            var slideIndex = 1;
-            window.onload = function(){
-                showSlides(slideIndex);
-            }
-            function plusSlides(n) {
-                showSlides(slideIndex += n);
-            }
+<script>
+    window.onload = function(){
+        document.getElementsByClassName("content")[0].style.paddingTop = document.getElementsByClassName("navbar")[0].offsetHeight + "px";
+        showSlides(slideIndex)
+    }
+    function opendiv(value){
+        var div = document.getElementById(value);
+        if(div.style.display == "block"){
+            div.style.display = "none"
+        }else{
+            div.style.display = "block"
+        }
+    };
+    var slideIndex = 1;
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
 
-            // Thumbnail image controls
-            function currentSlide(n) {
-                showSlides(slideIndex = n);
-            }
+    // Thumbnail image controls
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
 
-            function showSlides(n) {
-                var i;
-                var slides = document.getElementsByClassName("slide");
-                console.log(slideIndex)
-                if (n > slides.length) {slideIndex = 1}; 
-                if (n < 1) {slideIndex = slides.length};
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none" 
-                };
-                slides[slideIndex-1].style.display = "block"; 
-            };
-            function replace(div1, div2){
-                opendiv(div1);
-                opendiv(div2)
-            }
-        </script>
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("slide");
+        if (n > slides.length) {slideIndex = 1}; 
+        if (n < 1) {slideIndex = slides.length};
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none" 
+        };
+        slides[slideIndex-1].style.display = "block"; 
+    };
+    function replace(div1, div2){
+        opendiv(div1);
+        opendiv(div2)
+    }
+</script>

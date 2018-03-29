@@ -6,10 +6,13 @@ html, body {
     font-size: 3vh;
     text-decoration: none;
     background-color: white;
+    overflow-x: hidden;
 }
 .content {
     padding: 1vh 0.5vw;
     margin: 0;
+    width: 100vw;
+    overflow-x: hidden;
 }
 .tiled {
     color: inherit;
@@ -66,12 +69,14 @@ a {
 .navbar {
     margin: 0;
     padding: 0;
-    position: sticky;
+    position: fixed;
+    z-index: 1;
     background-color: white;
+    width: 100vw;
 }
 .navbar li, .link {
    display: inline;
-   position: sticky;
+   position: relative;
 }
 .navlink{
     padding: 2vh 1.5vw;
@@ -91,6 +96,11 @@ a {
 .navbar a.navlink, input.navlink {
     float: right;
     margin-top: 1.7vh;
+    margin-right: 1.5vw;
+}
+.about {
+    width: 10vw;
+    height: 10vh;
 }
 .slide {
     display: none;
@@ -181,10 +191,40 @@ input.titleUpd{
 .textarea:focus, .textarea:hover {
     border-color: darkgrey;
 }
+.small {
+    height: 15vh;
+    width: 30vw;
+}
 .inline * {
     display: inline-block !important;
+    vertical-align: top;
 }
 h2 {
     font-size: 4vh;
     font-weight: normal;
+}
+.shade {
+    padding: 1.5vh 0.7vw;
+    margin: 2vh 0vw;
+    border-left-style: solid;
+    border-left-color: grey;
+    background-color:#F2F2F2;
+}
+.result {
+    width: 80vh;
+    background-color: #FAFAFA;
+}
+.block :not(.hidden) {
+    display: block !important;
+}
+.shade {
+    width: 85%;
+    padding: 1.5vh 0.7vw;
+    margin: 2vh 0vw;
+    border-left-style: solid;
+    border-left-color: grey;
+    background-color:#F2F2F2;
+}
+.title {
+    font-size: 7vh;
 }

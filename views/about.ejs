@@ -1,28 +1,46 @@
 <% include partials/otherheader %>
+<style style="display:none">
+    .content * {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+</style>
 <%if(page == "about" || page == "resume"){%>
-    <h1>Ilya Chistiakov</h1>
-    <h2><%=helpers.title(page)%></h2>
+    <div style="width:70vw;background-image:url(/img/<%=page%>.jpg);background-size:100%;height:30vh">
+        <div style="width:70vw;background-color:rgba(100,100,100,0.5);height:30vh">
+            <h1 class="title" style="color:white;padding-top:10vh"><%=helpers.title(page)%></h1>
+        </div>
+    </div>
     <%if(session.userId){%>
         <form action="/admin/about<%=page%>" method="post">
-            <input type="text" name="title">
-            <input type="text" name="content">
-            <input type="submit" value="Create">
+            <input type="text" name="title" placeholder="Title" class="titleUpd" style="margin-bottom: 1vh;">
+            <textarea class="textarea small" name="content" placeholder="Description"style="margin-bottom: 1vh;">    
+            </textarea>
+            <input type="submit" value="Create" class="submit">
         </form>
     <%}%>
     <% if(docs.length){%>
-        <%for(var i = 0; i < docs.length; i++){%>
-            <h3><%= docs[i].title %></h3>
-            <p><%- docs[i].content %></p>
-            <%if(session.userId){%>
-                <form action="/adminn/updateAbout<%=docs[i]._id%>/<%=page%>" method="post">
-                    <input type="text" name="value">
-                    <input type="submit" value="Change">
-                </form>
-                <form action="/admin/deleteAbout<%=docs[i]._id%>/<%=page%>" method="post">
-                    <input type="submit" value="Delete">
-                </form>
+        <div class="cont">
+            <%for(var i = 0; i < docs.length; i++){%>
+                <div class="shade result block" style="margin-top:0.5vh">
+                    <%if(session.userId){%>
+                        <form action="/admin/deleteAbout<%=docs[i]._id%>/<%=page%>" method="post">
+                            <input type="submit" value="Delete" class="submit">
+                        </form>
+                    <%}%>
+                    <h2 style="margin:0;padding-bottom:1vh;"><%= docs[i].title %></h2>
+                    <p style="margin:0"><%- docs[i].content %></p>
+                    <%if(session.userId){%>
+                        <form action="/adminn/updateAbout<%=docs[i]._id%>/<%=page%>" method="post">
+                            <textarea class="textarea small" name="value" class="titleUpd"><%=docs[i].content%></textarea>
+                            <input type="submit" value="Change" class="submit">
+                        </form>
+                    <%}%>
+                </div>
             <%}%>
-        <%}%>
+        </div>
     <%}else{%>
         <p>Information not found!<%= session.userId ? " Add some above!": "" %></p>
     <%}%>

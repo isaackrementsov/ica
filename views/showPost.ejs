@@ -8,6 +8,9 @@
         text-align: center;
     }
 </style>
+<script>
+    showSlides(slideIndex)
+</script>
 <%if(doc){%>
     <%if(session.userId){%>
         <form action="/admin/deletePost/<%=doc.postname%>" method="post">

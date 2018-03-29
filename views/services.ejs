@@ -1,0 +1,28 @@
+<% include partials/header%>
+<h1 class="title">Services</h1>
+<style style="display:none">
+    .content * {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+</style>
+    <div class="cont" style="width:80vw">
+    <%for(var i = 0; i < services.length; i++){%>
+        <div class="item" style="float:none;width:30vw;display:inline-block;vertical-align:top">
+            <img src="/img/<%=services[i].image%>" style="width:30vw;height:auto">
+            <div class="layer">
+                <a href="/service/<%=services[i].name%>" class="tiled">
+                    <h1><%=services[i].name%></h1>
+                </a>
+            </div>
+        </div>
+    <%}%>
+    </div>
+<%if(session.userId){%>
+    <div style="display:block;margin-left:auto;margin-right:auto;margin-bottom:3vh;">
+       <a class="submit" href="/services/create" style="display:block;margin-left:auto;margin-right:auto;text-align:center;">Add Services</a>
+    </div>
+<%}%>
+<%include partials/footer%>

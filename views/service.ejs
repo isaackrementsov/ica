@@ -1,0 +1,37 @@
+<% include partials/otherheader %>
+<style style="display:none">
+    .content * {
+        margin-right: auto;
+        margin-left: auto;
+        display: block;
+    }
+    .content {
+        text-align: center;
+    }
+</style>
+<%if(service){%>
+    <%if(service.image){%>
+        <div style="width:70vw;background-image:url(/img/<%=service.image%>);background-size:100%;height:30vh">
+            <div style="width:70vw;background-color:rgba(100,100,100,0.5);height:30vh">
+                <h1 class="title" style="color:white;padding-top:10vh"><%=service.name%></h1>
+            </div>
+        </div>
+    <%}else{%>
+        <div style="width:70vw;height:30vh">
+            <h1 class="title" style="padding-top:10vh"><%=service.name%></h1>
+        </div>
+    <%}%>
+    <%if(session.userId){%>
+        <form action="/services/delete<%=service.name%>" method="post">
+            <input type="submit" class="submit" value="Delete Service">
+        </form>
+    <%}%>
+    <p class="description"><%=service.description%></p>
+    <% if(session.userId){%>
+        <form action="/services/update<%=service.name%>" method="post">
+            <textarea class="textarea sml" name="description"></textarea>
+            <input type="submit" class="submit" value="Change">
+        </form>
+    <%}%>
+<%}%>
+<% include partials/footer %>

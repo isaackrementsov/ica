@@ -1,0 +1,24 @@
+<%include partials/otherheader%>
+<style>
+    .content * {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-bottom: 1vh;
+    }
+    .content style {
+        display: none;
+    }
+</style>
+<h1>Add a service</h1>
+<form action="/services/create" method="post" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Title" class="titleUpd" required autocomplete="off">
+    <label for="file1">
+        <input type="file" name="coverPhoto" id="file1" style="display:none !important;">
+        <a class="submit">Choose Cover Photo</a>
+    </label>
+    <textarea name="description" placeholder="Description" class="textarea"></textarea>
+    <input type="submit" class="submit" value="Create!">
+</form>
+<%include partials/footer%>
