@@ -24,7 +24,7 @@
     <% if(docs.length){%>
         <div class="cont">
             <%for(var i = 0; i < docs.length; i++){%>
-                <div class="shade result block" style="margin-top:0.5vh">
+                <div class="shade result block" style="margin-top:2vh;width:80vw;">
                     <%if(session.userId){%>
                         <form action="/admin/deleteAbout<%=docs[i]._id%>/<%=page%>" method="post">
                             <input type="submit" value="Delete" class="submit">
