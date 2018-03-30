@@ -54,7 +54,11 @@ module.exports = {
             if(doc && !err){
                if(req.files){
                     if(req.files['coverPhoto']){
-                        fs.unlink("../Ilya website/public/img/" + attr)
+                        fs.unlink("../Ilya website/public/img/" + attr, function(err){
+			    if(err){
+				console.log(err)
+			    }
+			})
                         doc.image = req.files['coverPhoto'][0].filename;
                         doc.save();
                         res.redirect("/posts/" + req.params.postname)
@@ -74,7 +78,11 @@ module.exports = {
                         return index.name != attr.split("+")[1];
                     });
                     doc.save();
-                    fs.unlink("../Ilya website/public/img/" + attr.split("+")[1]);
+                    fs.unlink("../Ilya website/public/img/" + attr.split("+")[1], function(err){
+		    	if(err){
+			    console.log(err)
+		    	}
+		    });
                     res.redirect("/posts/" + req.params.postname)
                 }else if(req.body.value){
                     if(attr == "postname"){
@@ -128,10 +136,18 @@ module.exports = {
     },
     delete: function(req,res){
         Post.findOne({postname:req.params.postname}, function(err, doc){
-            fs.unlink("../Ilya Website/public/img/" + doc.image);
+            fs.unlink("../Ilya Website/public/img/" + doc.image, function(err){
+	    	if(err){
+		    console.log(err)
+		}
+	    });
             if(doc.images){
                 for(var i = 0; i < doc.images.length; i++){
-                    fs.unlink("../Ilya Website/public/img/" + doc.images[i].name)
+                    fs.unlink("../Ilya Website/public/img/" + doc.images[i].name, function(err){
+		    	if(err){
+			    console.log(err)
+			}
+		    })
                 }
             }
         }).exec(function(err){

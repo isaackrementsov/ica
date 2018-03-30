@@ -18,7 +18,7 @@ app.use(helmet({
   frameguard: {action: "deny"}
 }));
 //Module middleware or setup
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 443);
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -26,7 +26,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(cookieParser());
 mongoose.connect("mongodb://127.0.0.1:27017/ilyawebsite");
-//Tell app to listen on port 3000
+//Tell app to listen on port 443
 app.listen(app.get('port'), function(){
   console.log("server started");
 });
@@ -63,7 +63,7 @@ var limiter = new rateLimiter({
 app.use(limiter);
 User.findOne({}, function(err,doc){
     if(!doc){
-        var user = new User({name:"Ilya", password:"nycicARCH8102!"});
+        var user = new User({name:"Ilya", password:"Lo85564t%!dS"});
         user.save(function(err){
             if(err){
                 console.log(error)
