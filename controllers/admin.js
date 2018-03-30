@@ -170,7 +170,7 @@ module.exports = {
         }); 
         var mailOptions = {
             from: req.body.email,
-            to: '<isaackrementsov@gmail.com>',
+            to: '<ilyacawork@gmail.com>',
             subject: req.body.name + ' has contacted you from icawork',
             html: '<p>' + req.body.text + '<p>',
         }
