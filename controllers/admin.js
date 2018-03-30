@@ -2,6 +2,7 @@ var User = require("../models/users");
 var Post = require("../models/posts");
 var About = require("../models/abouts");
 var fs = require("fs");
+var nodemailer = require("nodemailer");
 module.exports = {
     home: function(req,res){
         if(req.session.userId){
@@ -55,10 +56,10 @@ module.exports = {
                if(req.files){
                     if(req.files['coverPhoto']){
                         fs.unlink("../Ilya website/public/img/" + attr, function(err){
-			    if(err){
-				console.log(err)
-			    }
-			})
+                            if(err){
+                                console.log(err)
+                            }
+                        });
                         doc.image = req.files['coverPhoto'][0].filename;
                         doc.save();
                         res.redirect("/posts/" + req.params.postname)
@@ -79,10 +80,10 @@ module.exports = {
                     });
                     doc.save();
                     fs.unlink("../Ilya website/public/img/" + attr.split("+")[1], function(err){
-		    	if(err){
-			    console.log(err)
-		    	}
-		    });
+                        if(err){
+                            console.log(err)
+                        }
+                    });
                     res.redirect("/posts/" + req.params.postname)
                 }else if(req.body.value){
                     if(attr == "postname"){
@@ -137,17 +138,17 @@ module.exports = {
     delete: function(req,res){
         Post.findOne({postname:req.params.postname}, function(err, doc){
             fs.unlink("../Ilya Website/public/img/" + doc.image, function(err){
-	    	if(err){
-		    console.log(err)
-		}
-	    });
+                if(err){
+                    console.log(err)
+                }
+            });
             if(doc.images){
                 for(var i = 0; i < doc.images.length; i++){
                     fs.unlink("../Ilya Website/public/img/" + doc.images[i].name, function(err){
-		    	if(err){
-			    console.log(err)
-			}
-		    })
+                        if(err){
+                            console.log(err)
+                        }
+		            })
                 }
             }
         }).exec(function(err){
@@ -155,5 +156,31 @@ module.exports = {
                 res.redirect("/admin")
             })
         })
+    },
+    rContact: function(req,res){
+        res.render("contact", {session:req.session})
+    },
+    contact: function(req,res){
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'ilyacawork@gmail.com',
+                pass: 'redacted'
+            }
+        }); 
+        var mailOptions = {
+            from: req.body.email,
+            to: '<isaackrementsov@gmail.com>',
+            subject: req.body.name + ' has contacted you from icawork',
+            html: '<p>' + req.body.text + '<p>',
+        }
+        transporter.sendMail(mailOptions, function(err,info){
+            if(err){
+                console.log(err)
+            }else{
+                console.log(info)
+            }
+        });
+        res.redirect("/contact")
     }
 }

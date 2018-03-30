@@ -54,6 +54,8 @@ module.exports = function(app){
     router.post("/logout", admin.logout);
     router.post("/admin/deleteAbout:aboutId/:page", checkUser, admin.deleteAbout);
     router.post("/adminn/updateAbout:aboutId/:page", checkUser, admin.updateAbout);
+    router.get("/contact", admin.rContact);
+    router.post("/contact", admin.contact);
     router.get("/services", checkUser, services.all);
     router.get("/service/:name", checkUser, services.read);
     router.get("/services/create", checkUser, services.rCreate);
