@@ -1,5 +1,5 @@
 <ul class="navbar">
-    <li><a href="/"><h1 class="navlink">Ilya Chistiakov Architect</h1></a></li>
+    <li><a href="/"><img class="navlink" src="<%=path%>img/static/Logo.png" style="height:10vh;padding:0"></a></li>
     <%if(session.userId){%>
         <li><form action="/logout" method="post" class="link"><input type="submit" value="Logout" class="navlink"></form></li>
         <li><a href="/admin" class="navlink">Dashboard</a></li>
