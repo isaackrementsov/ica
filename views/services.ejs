@@ -1,5 +1,4 @@
 <% include partials/header%>
-<h1 class="title">Services</h1>
 <style style="display:none">
     .content * {
         text-align: center;
@@ -9,16 +8,16 @@
     }
 </style>
     <div class="cont" style="width:80vw">
-    <%for(var i = 0; i < services.length; i++){%>
-        <div class="item" style="float:none;width:30vw;display:inline-block;vertical-align:top">
-            <img src="/img/<%=services[i].image%>" style="width:30vw;height:auto">
-            <div class="layer">
-                <a href="/service/<%=services[i].name%>" class="tiled">
-                    <h1><%=services[i].name%></h1>
-                </a>
+        <%for(var i = 0; i < services.length; i++){%>
+            <div class="item" style="float:none;width:30vw;display:inline-block;vertical-align:top;margin-bottom:1vh">
+                <img src="/img/<%=services[i].image%>" style="width:30vw;height:auto">
+                <div class="layer2" style="height:6.5vh;background-color:rgba(0,0,0,0.9);">
+                    <a href="/service/<%=services[i].name%>" class="tiled" style="top:0.8vh">
+                        <h1 style="text-align:left !important;font-size:4vh;padding-left:1vw;margin:0"><%=services[i].name%></h1>
+                    </a>
+                </div>
             </div>
-        </div>
-    <%}%>
+        <%}%>
     </div>
 <%if(session.userId){%>
     <div style="display:block;margin-left:auto;margin-right:auto;margin-bottom:3vh;">

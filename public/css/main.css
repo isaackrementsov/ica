@@ -9,7 +9,7 @@ html, body {
     overflow-x: hidden;
 }
 .content {
-    padding: 1vh 0.5vw;
+    padding: 1vh 0.25vw;
     margin: 0;
     width: 100vw;
     overflow-x: hidden;
@@ -26,16 +26,16 @@ html, body {
     opacity: 1;
 }
 .item {
-    width: auto;
+    width: 32.7vw;
     background-repeat: no-repeat;
     position: relative;
     float: top;
     float: left;
-    margin-right: 0.5vw;
+    margin: 0 0.25vw;
 }
 .item img {
-    width: auto;
-    height: 42vh;
+    width: 32.7vw;
+    height: 20.2vw;
 }
 .box {
     width: 70vw;
@@ -53,6 +53,16 @@ html, body {
     transition: .5s ease;
     position: absolute;
     opacity: 0;
+}
+.layer2 {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);   
+    color: white;
+    position: absolute;
 }
 .navbar h1 {
     font-weight: bold;

@@ -32,7 +32,7 @@ app.listen(app.get('port'), function(){
 });
 //Cookie settings
 app.use(session({
-  secret: 'yVVma9ga',
+  secret: process.env.SECRET || 'secret',
   saveUninitialized: true,
   resave: true,
   cookie: {httpOnly: true}
@@ -63,7 +63,7 @@ var limiter = new rateLimiter({
 app.use(limiter);
 User.findOne({}, function(err,doc){
     if(!doc){
-        var user = new User({name:"Ilya", password:"Lo85564t%!dS"});
+        var user = new User({name:"Ilya", password:proccess.env.PASSWORD || 'password'});
         user.save(function(err){
             if(err){
                 console.log(error)

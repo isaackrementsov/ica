@@ -165,7 +165,7 @@ module.exports = {
             service: 'gmail',
             auth: {
                 user: 'ilyacawork@gmail.com',
-                pass: 'redacted'
+                pass: process.env.EMAILPASSWORD || 'redacted'
             }
         }); 
         var mailOptions = {

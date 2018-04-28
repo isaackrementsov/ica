@@ -1,5 +1,5 @@
 <ul class="navbar">
-    <li><a href="/"><img class="navlink" src="<%=path%>img/static/Logo.png" style="height:10vh;padding:0"></a></li>
+    <li><a href="/"><img class="navlink" src="<%=path%>img/static/Logo.png" style="height:8vh;padding:1vh 0.25vw"></a></li>
     <%if(session.userId){%>
         <li><form action="/logout" method="post" class="link"><input type="submit" value="Logout" class="navlink"></form></li>
         <li><a href="/admin" class="navlink">Dashboard</a></li>
@@ -7,7 +7,6 @@
         <li><a href="/contact" class="navlink">Contact</a></li>
     <%}%>
     <li><a href="/info/about" class="navlink">About</a></li>
-    <li><a href="/info/resume" class="navlink">Resume</a></li>
     <li><a href="/blog" class="navlink">Blog</a></li>
     <li><a href="/services" class="navlink">Services</a></li>    
 </ul>
