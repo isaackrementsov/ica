@@ -8,6 +8,22 @@ html, body {
     background-color: white;
     overflow-x: hidden;
 }
+::-webkit-scrollbar {
+    width: 0.5vw;
+}
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+    background: lightgrey; 
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+::-webkit-scrollbar-track:hover {
+    width: 1vw;
+    background-color: #f1f1f1;
+}
 .content {
     padding: 1vh 0.25vw;
     margin: 0;
