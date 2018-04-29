@@ -56,14 +56,14 @@
             <input type="submit" value="Upload to gallery" class="submit">
         </form>
     <%}%>
-    <h1><%=doc.name%></h1>
+    <h1 style="margin-bottom:0;"><%=doc.name%></h1>
     <% if(session.userId){%>
         <form action="/admin/update<%=doc.postname%>/name" method="post">
             <input type="text" placeholder="Change Name" name="value" class="titleUpd">
         </form>
     <%}%>
     <%if(doc.year || doc.location){%>
-        <div class="inline"><h2><%=doc.location%> || <%=doc.year%></h2></div>
+        <div class="inline"><h2 style="margin-top:1.5vh;"><%=doc.location%> || <%=doc.year%></h2></div>
     <%}%>
     <p class="description"><%=doc.content%></p>
     <% if(session.userId){%>
