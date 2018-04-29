@@ -35,7 +35,7 @@ module.exports = {
     },
     about: function(req,res){
         About.find({page:req.params.page}, function(err, docs){
-            res.render("About", {session:req.session, docs:docs, page:req.params.page, helpers:helpers})
+            res.render("about", {session:req.session, docs:docs, page:req.params.page, helpers:helpers})
         });  
     },
     blog: function(req,res){
