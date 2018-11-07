@@ -3,6 +3,7 @@
     <%if(session.userId){%>
         <li><form action="/logout" method="post" class="link"><input type="submit" value="Logout" class="navlink"></form></li>
         <li><a href="/admin" class="navlink">Dashboard</a></li>
+        <li><form action="/admin/viewerMode" method="post" class="link"><input type="submit" value="Viewer Mode" class="navlink"></form></li>
     <%}else{%>
         <li><a href="/contact" class="navlink">Contact</a></li>
     <%}%>

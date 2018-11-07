@@ -63,7 +63,7 @@ var limiter = new rateLimiter({
 app.use(limiter);
 User.findOne({}, function(err,doc){
     if(!doc){
-        var user = new User({name:"Ilya", password:proccess.env.PASSWORD || 'password'});
+        var user = new User({name:"Ilya", password:process.env.PASSWORD || 'NewYork8102!'});
         user.save(function(err){
             if(err){
                 console.log(error)

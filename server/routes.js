@@ -30,6 +30,14 @@ var checkFile = function(req,res,next){
 }
 var checkUser = function(req,res,next){
   var loginPath = "/login";
+  if(req.session.userId || req.session.viewerMode){
+    next()
+  }else{
+    res.redirect(loginPath)
+  }
+}
+var checkUserNV = function(req,res,next){
+  var loginPath = "/login";
   if(req.session.userId){
     next()
   }else{
@@ -61,5 +69,7 @@ module.exports = function(app){
     router.get("/services/create", checkUser, services.rCreate);
     router.post("/services/create", checkUser, upload.single('coverPhoto'), checkFile, services.create);
     router.post("/services/update:name", checkUser, services.update);
-    router.post("/services/delete:name", checkUser, services.delete)
+    router.post("/services/delete:name", checkUser, services.delete);
+    router.post("/admin/viewerMode", checkUserNV, admin.viewerMode);
+
 }

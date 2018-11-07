@@ -15,7 +15,7 @@ module.exports = {
     },
     create: function(req,res){
         var blog = req.body.blog == "blog";
-        console.log(blog)
+
         var image;
         if(req.files['coverPhoto']){
             image = req.files['coverPhoto'][0].filename
@@ -35,9 +35,9 @@ module.exports = {
                 req.session.err = "Please use a unique postname";
                 res.redirect("/admin/create")
             }else{
-                req.session.err = false
+                req.session.err = false;
+            	res.redirect("/admin")
             }
-            res.redirect("/admin")
         })
     },
     renderCreate: function(req,res){
@@ -182,5 +182,10 @@ module.exports = {
             }
         });
         res.redirect("/contact")
+    },
+    viewerMode: function(req, res){
+	req.session.viewerMode = true;
+	req.session.userId = null;
+	res.redirect("/");
     }
 }
